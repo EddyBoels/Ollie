@@ -1,0 +1,31 @@
+[11-Feb-2026 08:30:28 UTC] Automatic updates starting...
+[11-Feb-2026 08:30:28 UTC] Automatic updates complete.
+[11-Feb-2026 13:28:21 UTC] PHP Deprecated:  strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /wordpress/wp-admin/admin-header.php on line 2
+[11-Feb-2026 13:35:45 UTC] WordPress database error <div style="clear:both">&nbsp;</div>
+<div class="queries" style="clear:both;margin-bottom:2px;border:red dotted thin;">
+<p>MySQL query:</p>
+<p>DELETE FROM wp_yoast_indexable WHERE object_type = 'post' AND object_sub_type = 'shop_order' ORDER BY id LIMIT 1000</p>
+<p>Queries made or created this session were:</p>
+<ol>
+<li>Executing: BEGIN IMMEDIATE | (no parameters)</li>
+<li>Executing: DELETE FROM `wp_yoast_indexable` WHERE `object_type` = &#039;post&#039; AND `object_sub_type` = &#039;shop_order&#039; ORDER BY `id` LIMIT 1000 | (no parameters)</li>
+<li>Executing: ROLLBACK | (no parameters)</li>
+</ol>
+</div>
+<div style="clear:both;margin-bottom:2px;border:red dotted thin;" class="error_message" style="border-bottom:dotted blue thin;">
+SQLSTATE[HY000]: General error: 1 near "ORDER": syntax error
+</div>
+<p>Backtrace:</p>
+<pre>#0 /internal/shared/sqlite-database-integration/wp-includes/sqlite-ast/class-wp-pdo-mysql-on-sqlite.php(921): WP_PDO_MySQL_On_SQLite->new_driver_exception('SQLSTATE[HY000]...', 'HY000', Object(PDOException))
+#1 /internal/shared/sqlite-database-integration/wp-includes/sqlite-ast/class-wp-sqlite-driver.php(160): WP_PDO_MySQL_On_SQLite->query('DELETE FROM wp_...', 5)
+#2 /internal/shared/sqlite-database-integration/wp-includes/sqlite/class-wp-sqlite-db.php(524): WP_SQLite_Driver->query('DELETE FROM wp_...')
+#3 /internal/shared/sqlite-database-integration/wp-includes/sqlite/class-wp-sqlite-db.php(436): WP_SQLite_DB->_do_query('DELETE FROM wp_...')
+#4 /wordpress/wp-content/plugins/wordpress-seo/src/repositories/indexable-cleanup-repository.php(78): WP_SQLite_DB->query('DELETE FROM wp_...')
+#5 /wordpress/wp-content/plugins/wordpress-seo/src/integrations/cleanup-integration.php(122): Yoast\WP\SEO\Repositories\Indexable_Cleanup_Repository->clean_indexables_with_object_type_and_object_sub_type('post', 'shop_order', 1000)
+#6 /wordpress/wp-content/plugins/wordpress-seo/src/integrations/cleanup-integration.php(96): Yoast\WP\SEO\Integrations\Cleanup_Integration->Yoast\WP\SEO\Integrations\{closure}(1000)
+#7 /wordpress/wp-includes/class-wp-hook.php(3): Yoast\WP\SEO\Integrations\Cleanup_Integration->run_cleanup()
+#8 /wordpress/wp-includes/class-wp-hook.php(3): WP_Hook->apply_filters('', Array)
+#9 /wordpress/wp-includes/plugin.php(2): WP_Hook->do_action(Array)
+#10 /wordpress/wp-cron.php(2): do_action_ref_array('wpseo_start_cle...', Array)
+#11 {main}</pre>
+ for query DELETE FROM wp_yoast_indexable WHERE object_type = 'post' AND object_sub_type = 'shop_order' ORDER BY id LIMIT 1000 made by do_action_ref_array('wpseo_start_cleanup_indexables'), WP_Hook->do_action, WP_Hook->apply_filters, Yoast\WP\SEO\Integrations\Cleanup_Integration->run_cleanup, Yoast\WP\SEO\Integrations\Cleanup_Integration->Yoast\WP\SEO\Integrations\{closure}, Yoast\WP\SEO\Repositories\Indexable_Cleanup_Repository->clean_indexables_with_object_type_and_object_sub_type, WP_SQLite_DB->query, WP_SQLite_DB->print_error
